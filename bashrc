@@ -2,8 +2,13 @@
 # Environment
 # -----------------------------------------------
 
+# Source completion scripts
+for file in ~/{git,tmux,tmuxinator}-completion.bash; do
+	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
+done
+unset file
+
 source ~/git-prompt.sh
-source ~/git-completion.bash
 export EDITOR=vim
 # experimental go vendor
 export GO15VENDOREXPERIMENT=1
