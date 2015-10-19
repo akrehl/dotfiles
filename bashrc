@@ -7,7 +7,10 @@ for file in ~/{git,tmux,tmuxinator}-completion.bash; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
 unset file
-
+# auto: Show difference between HEAD and upstream
+# verbose: Show number of commits ahead/behind upstream
+# git: Always compare HEAD to @{upstream}
+export GIT_PS1_SHOWUPSTREAM="auto verbose git"
 source ~/git-prompt.sh
 export EDITOR=vim
 # experimental go vendor
@@ -51,6 +54,7 @@ alias x=exit
 alias c=clear
 # Recursively remove .DS_Store files
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
+# alias gcc='gcc -ansi -Wall -pedantic-errors'
 
 # -----------------------------------------------
 #  User-defined Functions

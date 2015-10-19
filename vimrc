@@ -16,6 +16,7 @@ let mapleader=","
 set backspace=indent,eol,start
 set listchars=tab:▸\ ,eol:¬
 set list
+set so=7
 
 " ==================== Behaviour ==================== {{{2
 " for shellscripts and Dockerfiles use tabs
@@ -30,9 +31,11 @@ endif
 " Mappings {{{1
 "************************************************************
 "
-nnoremap <Space> za
+nnoremap <Space> zz
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
+nmap n nzz
+nmap N Nzz
 " Auto-closing braces
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap (<CR>  (<CR>)<Esc>O>
@@ -154,6 +157,17 @@ let g:ycm_key_list_previous_completion=[]
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_extra_conf_vim_data = ['v:version']
 hi SpecialKey ctermbg=none
+
+" ==================== vim-fugitive ==================== {{{2
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gvdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
 
 " ==================== ctrlp ==================== {{{2
 let g:ctrlp_map = '<leader>f'
