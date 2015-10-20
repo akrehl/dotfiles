@@ -48,7 +48,8 @@ inoremap <C-Space> <C-x><C-o>
 "
 colorscheme solarized
 set background=dark
-
+" highlight background > 80's column
+let &colorcolumn="80,".join(range(120,999),",")
 "************************************************************
 " Plugin configuration {{{1
 "************************************************************
@@ -160,14 +161,16 @@ hi SpecialKey ctermbg=none
 
 " ==================== vim-fugitive ==================== {{{2
 nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gvdiff<CR>
+nnoremap <silent> <leader>gd :Gvdiff!<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
+" nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
+nnoremap <silent> <leader>gps :Dispatch! git push<CR>
+nnoremap <silent> <leader>gpl :Dispatch! git pull<CR>
 
 " ==================== ctrlp ==================== {{{2
 let g:ctrlp_map = '<leader>f'
@@ -175,8 +178,13 @@ let g:ctrlp_map = '<leader>f'
 " ==================== emmet-vim ==================== {{{2
 "let g:user_emmet_leader_key='<C-Z>'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+if has("autocmd")
+  autocmd FileType html,css EmmetInstall
+endif
 
 " ==================== ack.vim ==================== {{{2
 map <leader>a :tab split<CR>:Ack ""<Left>
 map <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
+
+" ==================== git-gutter ==================== {{{2
+nnoremap <leader>gnh :GitGutterNextHunk<CR>
