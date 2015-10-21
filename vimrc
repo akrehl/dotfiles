@@ -17,6 +17,7 @@ set backspace=indent,eol,start
 set listchars=tab:▸\ ,eol:¬
 set list
 set so=7
+set nofoldenable
 
 " ==================== Behaviour ==================== {{{2
 " for shellscripts and Dockerfiles use tabs
@@ -188,3 +189,5 @@ map <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 
 " ==================== git-gutter ==================== {{{2
 nnoremap <leader>gnh :GitGutterNextHunk<CR>
+" ==================== gitv ==================== {{{2
+nnoremap <silent> <leader>gv :Gitv<CR>
