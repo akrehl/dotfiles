@@ -30,7 +30,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # '\u' adds the name of the current user to the prompt
 # '\$(__git_ps1)' adds git-related stuff
 # '\W' adds the name of the current directory
-export PS1="$red\u$green\$(__git_ps1)$blue \W $ $reset"
+export PS1="$red\u$green\$(__git_ps1)\$(parse_svn_branch)$blue \W $ $reset"
 
 # -----------------------------------------------
 # Path
@@ -88,6 +88,21 @@ smartextract() {
     fi
 }
 
+# Show svn branch
+parse_svn_branch() {
+  parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk '{print " (svn::"$1")" }'
+}
+parse_svn_url() {
+  svn info 2>/dev/null | sed -ne 's#^URL: ##p'
+}
+parse_svn_repository_root() {
+  svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
+}
+
 # -----------------------------------------------
 #  END
 # -----------------------------------------------
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/adrian/.sdkman"
+[[ -s "/Users/adrian/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/adrian/.sdkman/bin/sdkman-init.sh"
