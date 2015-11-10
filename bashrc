@@ -30,7 +30,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # '\u' adds the name of the current user to the prompt
 # '\$(__git_ps1)' adds git-related stuff
 # '\W' adds the name of the current directory
-export PS1="$red\u$green\$(__git_ps1)$blue \W $ $reset"
+export PS1="$red\u$green\$(__git_ps1)\$(parse_svn_branch)$blue \W $ $reset"
 
 # -----------------------------------------------
 # Path
@@ -86,6 +86,17 @@ smartextract() {
     else
         echo "'$1' is not a valid file"
     fi
+}
+
+# Show svn info in prompt
+parse_svn_branch() {
+  parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk '{print " (svn::"$1")" }'
+}
+parse_svn_url() {
+  svn info 2>/dev/null | sed -ne 's#^URL: ##p'
+}
+parse_svn_repository_root() {
+  svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
 }
 
 # -----------------------------------------------
