@@ -88,7 +88,7 @@ smartextract() {
     fi
 }
 
-# Show svn info in prompt
+# Show svn branch
 parse_svn_branch() {
   parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk '{print " (svn::"$1")" }'
 }
